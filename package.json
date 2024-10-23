@@ -52,7 +52,7 @@
     "lucide-react": "^0.438.0",
     "next": "14.2.7",
     "nodemailer": "^6.9.14",
-    "payload": "^2.27.0",
+    "payload": "^2.30.3",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.0",

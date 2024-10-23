@@ -11,7 +11,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const stripeWebhookHandler = async (
   req: express.Request,
-  res: express.Response,
+  res: express.Response
 ) => {
   const webhookRequest = req as any as WebhookRequest;
   const body = webhookRequest.rawBody;
@@ -22,15 +22,13 @@ export const stripeWebhookHandler = async (
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET || "",
+      process.env.STRIPE_WEBHOOK_SECRET || ""
     );
   } catch (err) {
     return res
       .status(400)
       .send(
-        `Webhook Error: ${
-          err instanceof Error ? err.message : "Unknown Error"
-        }`,
+        `Webhook Error: ${err instanceof Error ? err.message : "Unknown Error"}`
       );
   }
 
@@ -86,11 +84,11 @@ export const stripeWebhookHandler = async (
     try {
       const data = await resend.emails.send({
         from: "DigitalHippo <hello@joshtriedcoding.com>",
-        to: [user.email],
+        to: [user.email as string],
         subject: "Thanks for your order! This is your receipt.",
-        html: ReceiptEmailHtml({
+        html: await ReceiptEmailHtml({
           date: new Date(),
-          email: user.email,
+          email: user.email as string,
           orderId: session.metadata.orderId,
           products: order.products as Product[],
         }),
