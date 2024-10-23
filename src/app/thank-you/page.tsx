@@ -76,11 +76,15 @@ const ThankYouPage = async ({ searchParams }: PageProps) => {
                 Your order was processed and your assets are available to
                 download below. We&apos;ve sent your receipt and order details
                 to{" "}
-                {typeof order.user !== "string" ? (
-                  <span className="font-medium text-gray-900">
-                    {order.user.email}
-                  </span>
-                ) : null}
+                <span className="font-medium text-gray-900">
+                  {order &&
+                  "user" in order &&
+                  typeof order.user === "object" &&
+                  order.user &&
+                  "email" in order.user
+                    ? (order.user as { email: string }).email
+                    : ""}
+                </span>
                 .
               </p>
             ) : (
@@ -163,9 +167,9 @@ const ThankYouPage = async ({ searchParams }: PageProps) => {
               </div>
 
               <PaymentStatus
-                isPaid={order._isPaid}
+                isPaid={Boolean(order._isPaid)}
                 orderEmail={(order.user as User).email}
-                orderId={order.id}
+                orderId={order.id.toString()}
               />
 
               <div className="mt-16 border-t border-gray-200 py-6 text-right">
