@@ -31,8 +31,8 @@ export default function Home() {
       <MaxWidthWrapper>
         <div className="py-20 mx-auto text-center flex flex-col items-center max-w-3xl">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            Your marketplace for high-quality{" "}
-            <span className="text-blue-600">digital assets</span>.
+            {"Find the stuff you like in the"}
+            <span className=""> moment </span>
           </h1>
           <p className="mt-6 text-lg max-w-prose text-muted-foreground">
             Hey! We are the moment and live in the moment. This is a shop where
@@ -40,17 +40,18 @@ export default function Home() {
             wishlist. Come join us!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
-            <Link href="/products" className={buttonVariants()}>
-              Browse Trending
+            <Link href="/products">
+              <button className="rounded-2xl border-2 border-[#2A2A2B] bg-[#d4cdc3] px-6 py-3 font-black uppercase text-[#2A2A2B] transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-md hover:shadow-[4px_4px_0px_#2A2A2B] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none">
+                come shop with us
+              </button>
             </Link>
-            <Button variant="ghost">Come shop with us &rarr;</Button>
           </div>
         </div>
 
         <ProductReel
           query={{ sort: "desc", limit: 4 }}
           href="/products?sort=recent"
-          title="Brand new"
+          title="This just came in"
         />
       </MaxWidthWrapper>
 
